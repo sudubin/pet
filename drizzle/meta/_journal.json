@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1789019150881,
+      "tag": "0000_slim_felicia_hardy",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1789094500846,
+      "tag": "0001_yummy_gamma_corps",
+      "breakpoints": true
+    }
+  ]
+}
