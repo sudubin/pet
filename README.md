@@ -1,15 +1,58 @@
-[eval]:1
-process.stdout.write(require('fs').readFileSync(README.md,'utf8'))
-                                                ^
+# 爪爪图鉴 · 宠物指南 MVP
 
-ReferenceError: README is not defined
-    at [eval]:1:49
-    at runScriptInThisContext (node:internal/vm:219:10)
-    at node:internal/process/execution:451:12
-    at [eval]-wrapper:6:24
-    at runScriptInContext (node:internal/process/execution:449:60)
-    at evalFunction (node:internal/process/execution:283:30)
-    at evalTypeScript (node:internal/process/execution:295:3)
-    at node:internal/main/eval_string:71:3
+一个优先支持本地运行的宠物知识与社区产品原型，保留卡通像素风格，后续可扩展到网页正式版和微信小程序。
 
-Node.js v24.20.0
+## 当前功能
+
+- **宠物图鉴**：犬、猫、小型哺乳、爬宠和无脊椎动物的品种资料、体型、参考体重、特点与饲养提示。
+- **成长形象**：支持幼年、成长、成年或幼体、成体阶段切换；当前仓库已接入首批犬猫和异宠视觉素材，其余品种保留素材位。
+- **我的宠物**：创建专属像素伙伴，记录昵称、阶段和体重趋势；犬猫健康内容使用体况评分（BCS）提示，不替代诊疗。
+- **宠物社区**：发布领养、饲养经验、用品推荐和诊疗经历；内容默认进入待审核状态，专业用户可申请兽医标识。
+- **知识学习**：选择题、答题解释和成长点奖励；同一题重复作答不会重复发放积分。
+- **宠物家园**：使用成长点兑换家具并放入九格家园，数据会优先保存在本机，具备后端时可同步。
+- **本地优先**：没有服务器或付费云服务也可以启动和体验主要流程。
+
+## 本地运行
+
+环境要求：Node.js `>=22.13.0`。
+
+```bash
+npm install
+npm run dev
+```
+
+打开终端中显示的本地地址即可访问。首次运行也可以执行：
+
+```bash
+npm run local:setup
+```
+
+该命令会准备本地 D1 数据和演示数据。若只想体验离线模式，直接运行开发服务器即可。
+
+## 常用命令
+
+```bash
+npm run dev          # 启动本地开发预览
+npm run build        # 构建并检查可部署产物
+npm run lint         # 代码规范检查
+npm run typecheck    # TypeScript 类型检查
+npm run local:setup  # 初始化本地数据库和示例数据
+```
+
+## 素材目录
+
+- `public/pets/`：当前已接入的犬猫和异宠展示图。
+- `public/art/pets/<品种>/`：后续可按 `01.png`、`02.png`、`03.png` 增加分阶段像素形象。
+- `public/art/furniture/`：家园家具素材位。
+
+素材建议使用透明背景 PNG，主体保持居中，尺寸统一为 512×512 或 1024×1024。大型犬猫准备三张阶段图，小型宠物准备两张阶段图。美术素材替换后无需改动业务数据，只需保持对应路径即可。
+
+## 技术栈
+
+- Vinext / React / TypeScript
+- Tailwind CSS 与组件化 UI
+- Cloudflare Worker + D1（本地开发可使用 Miniflare）
+- Drizzle ORM
+- Lucide 图标
+
+生产环境的登录、审核、文件存储和微信小程序接口仍需后续接入；当前版本面向本地验证和产品流程演示。
